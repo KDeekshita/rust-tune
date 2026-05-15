@@ -27,20 +27,24 @@
         <div class="cover-art" aria-hidden="true">🎵</div>
         <div class="track-info">
           <p class="eyebrow">Now Playing</p>
-          <h1 class="track-title">Pick a song to start</h1>
-          <p class="track-artist">RustTune &middot; Built with Actix Web</p>
+          <h1 class="track-title" id="track-title">Pick a song to start</h1>
+          <p class="track-artist" id="track-artist">RustTune &middot; Built with Actix Web</p>
 
           <div class="player-controls">
-            <button class="ctrl" aria-label="Previous">⏮</button>
-            <button class="ctrl ctrl-play" aria-label="Play">▶</button>
-            <button class="ctrl" aria-label="Next">⏭</button>
+            <button class="ctrl" id="prev-btn" aria-label="Previous">⏮</button>
+            <button class="ctrl ctrl-play" id="play-btn" aria-label="Play">▶</button>
+            <button class="ctrl" id="next-btn" aria-label="Next">⏭</button>
           </div>
 
           <div class="progress">
-            <span class="time">0:00</span>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <span class="time">3:42</span>
+            <span class="time" id="current-time">0:00</span>
+            <div class="progress-bar" id="progress-bar" role="slider" aria-label="Seek" tabindex="0">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="time" id="duration">0:00</span>
           </div>
+
+          <audio id="audio" preload="metadata"></audio>
         </div>
       </div>
     </section>
@@ -51,38 +55,38 @@
         <a href="#" class="see-all">See all</a>
       </div>
 
-      <ul class="song-list">
-        <li class="song-card">
+      <ul class="song-list" id="song-list">
+        <li class="song-card" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" data-title="SoundHelix Song 1" data-artist="SoundHelix">
           <div class="song-cover">🎶</div>
           <div class="song-meta">
-            <p class="song-title">Song Title 1</p>
-            <p class="song-artist">Artist Name</p>
+            <p class="song-title">SoundHelix Song 1</p>
+            <p class="song-artist">SoundHelix</p>
           </div>
-          <span class="song-duration">3:24</span>
+          <span class="song-duration">--:--</span>
         </li>
-        <li class="song-card">
+        <li class="song-card" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" data-title="SoundHelix Song 2" data-artist="SoundHelix">
           <div class="song-cover">🎶</div>
           <div class="song-meta">
-            <p class="song-title">Song Title 2</p>
-            <p class="song-artist">Artist Name</p>
+            <p class="song-title">SoundHelix Song 2</p>
+            <p class="song-artist">SoundHelix</p>
           </div>
-          <span class="song-duration">4:05</span>
+          <span class="song-duration">--:--</span>
         </li>
-        <li class="song-card">
+        <li class="song-card" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" data-title="SoundHelix Song 3" data-artist="SoundHelix">
           <div class="song-cover">🎶</div>
           <div class="song-meta">
-            <p class="song-title">Song Title 3</p>
-            <p class="song-artist">Artist Name</p>
+            <p class="song-title">SoundHelix Song 3</p>
+            <p class="song-artist">SoundHelix</p>
           </div>
-          <span class="song-duration">2:58</span>
+          <span class="song-duration">--:--</span>
         </li>
-        <li class="song-card">
+        <li class="song-card" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" data-title="SoundHelix Song 4" data-artist="SoundHelix">
           <div class="song-cover">🎶</div>
           <div class="song-meta">
-            <p class="song-title">Song Title 4</p>
-            <p class="song-artist">Artist Name</p>
+            <p class="song-title">SoundHelix Song 4</p>
+            <p class="song-artist">SoundHelix</p>
           </div>
-          <span class="song-duration">3:47</span>
+          <span class="song-duration">--:--</span>
         </li>
       </ul>
     </section>
