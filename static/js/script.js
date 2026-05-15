@@ -122,8 +122,13 @@
   // Keyboard support on progress bar
   progressBar.addEventListener("keydown", (e) => {
     if (!isFinite(audio.duration)) return;
-    if (e.key === "ArrowRight") audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
-    else if (e.key === "ArrowLeft") audio.currentTime = Math.max(0, audio.currentTime - 5);
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      audio.currentTime = Math.max(0, audio.currentTime - 5);
+    }
   });
 
   // Spacebar toggles play/pause when not in an input
