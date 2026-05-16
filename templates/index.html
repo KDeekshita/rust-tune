@@ -8,7 +8,16 @@
   <h1>🎧 RustTune</h1>
   <p>Music app using Rust</p>
 
-  <button>Play</button>
+  <button id="playBtn">Play</button>
+
+  <div id="loading" class="hidden">
+    Loading...
+  </div>
+
+  <div id="error" class="hidden">
+    <p>Something went wrong!</p>
+    <button id="retryBtn">Retry</button>
+  </div>
 
   <script src="/static/js/script.js"></script>
 </body>
