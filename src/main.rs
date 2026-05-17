@@ -1,5 +1,12 @@
+use std::sync::Mutex;
+
 use actix_files::Files;
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
+
+use crate::{db::inmemory::Db, routes::auth::{signin, signup}};
+pub mod routes;
+pub mod types;
+pub mod db;
 
 #[get("/")]
 async fn home() -> impl Responder {
@@ -10,12 +17,20 @@ async fn home() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Server running at http://127.0.0.1:8000");
 
-    HttpServer::new(|| {
+    let db = web::Data::new(Mutex::new(Db::new()));
+
+    HttpServer::new(move || {
         App::new()
+        .app_data(db.clone())
             .service(home)
+            .service(
+                web::scope("/auth")
+                .route("/signin", web::post().to(signin))
+                .route("/signup", web::post().to(signup))
+            )
             .service(Files::new("/static", "./static"))
+           
     })
     .bind(("127.0.0.1", 8000))?
     .run()
