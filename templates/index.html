@@ -17,7 +17,7 @@
     </nav>
     <div class="header-actions">
       <input type="search" class="search" placeholder="Search songs, artists..." aria-label="Search songs and artists" />
-      <button class="btn btn-ghost">Sign in</button>
+      <button type="button" class="btn btn-ghost">Sign in</button>
     </div>
   </header>
 
@@ -31,9 +31,9 @@
           <p class="track-artist">RustTune &middot; Built with Actix Web</p>
 
           <div class="player-controls">
-            <button class="ctrl" aria-label="Previous">⏮</button>
-            <button class="ctrl ctrl-play" aria-label="Play">▶</button>
-            <button class="ctrl" aria-label="Next">⏭</button>
+            <button type="button" class="ctrl" aria-label="Previous">⏮</button>
+            <button type="button" class="ctrl ctrl-play" aria-label="Play">▶</button>
+            <button type="button" class="ctrl" aria-label="Next">⏭</button>
           </div>
 
           <div class="progress">
@@ -92,6 +92,6 @@
     <p>&copy; 2026 RustTune &middot; Made with Rust 🦀</p>
   </footer>
 
-  <script src="/static/js/script.js"></script>
+  <script src="/static/js/script.js" defer></script>
 </body>
 </html>
