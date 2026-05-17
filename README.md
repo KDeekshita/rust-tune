@@ -67,12 +67,6 @@ Server running at http://127.0.0.1:8000
 ### 4. Open in your browser
 Visit **http://127.0.0.1:8000**
 
-### 5. Test the API route
-```bash
-curl http://127.0.0.1:8000/api/hello
-# {"message":"Hello from RustTune!","status":"ok"}
-```
-
 ---
 
 ## 📁 Project Structure
@@ -170,10 +164,4 @@ RustTune is designed to:
 - Beginners who want to learn Rust 🦀
 - Developers interested in web development
 - Open-source enthusiasts
-
----
-
-## 📜 License
-
-This project is open source. See the repository for license details.
 
