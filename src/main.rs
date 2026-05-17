@@ -11,7 +11,9 @@ struct Song {
     url: &'static str,
 }
 
-fn songs() -> Vec<Song> {
+// NOTE: Static/mock song catalog. Replace with a real data source
+// (database, external API, etc.) when persistence is introduced.
+pub(crate) fn songs() -> Vec<Song> {
     vec![
         Song {
             id: 1,
