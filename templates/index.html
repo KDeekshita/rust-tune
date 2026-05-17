@@ -38,13 +38,13 @@
 
           <div class="progress">
             <span class="time" id="current-time">0:00</span>
-            <div class="progress-bar" id="progress-bar" role="slider" aria-label="Seek" tabindex="0">
+            <div class="progress-bar" id="progress-bar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
               <div class="progress-fill" id="progress-fill"></div>
             </div>
             <span class="time" id="duration">0:00</span>
           </div>
 
-          <audio id="audio" preload="metadata"></audio>
+          <audio id="audio" preload="metadata" hidden></audio>
         </div>
       </div>
     </section>

@@ -14,6 +14,7 @@
 
   let currentIndex = -1;
   let isSeeking = false;
+  let pendingSeek = null;
 
   const fmt = (s) => {
     if (!isFinite(s) || s < 0) return "0:00";
@@ -39,7 +40,9 @@
     trackTitleEl.textContent = card.dataset.title || "Unknown";
     trackArtistEl.textContent = card.dataset.artist || "Unknown";
     highlightActive();
-    if (autoplay) audio.play().catch((e) => console.warn("Playback blocked:", e));
+    if (autoplay) audio.play().catch((e) => {
+      if (e && e.name !== "AbortError") console.warn("Playback blocked:", e);
+    });
   };
 
   const togglePlay = () => {
@@ -96,10 +99,11 @@
     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
     const ratio = Math.max(0, Math.min(1, x / rect.width));
     progressFill.style.width = `${ratio * 100}%`;
+    progressBar.setAttribute("aria-valuenow", String(Math.round(ratio * 100)));
     if (isFinite(audio.duration)) {
       currentTimeEl.textContent = fmt(ratio * audio.duration);
       if (!isSeeking) audio.currentTime = ratio * audio.duration;
-      else audio._pendingSeek = ratio * audio.duration;
+      else pendingSeek = ratio * audio.duration;
     }
   };
 
@@ -113,9 +117,9 @@
   document.addEventListener("mouseup", () => {
     if (!isSeeking) return;
     isSeeking = false;
-    if (audio._pendingSeek != null) {
-      audio.currentTime = audio._pendingSeek;
-      audio._pendingSeek = null;
+    if (pendingSeek != null) {
+      audio.currentTime = pendingSeek;
+      pendingSeek = null;
     }
   });
 
