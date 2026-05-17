@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>RustTune</title>
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
+
   <h1>🎧 RustTune</h1>
   <p>Music app using Rust</p>
 
-  <button>Play</button>
+  <button id="playBtn">Play</button>
 
-  <script src="/static/js/script.js"></script>
+  <div id="loading" style="display:none; color:white; margin-top:20px;">
+    Loading music...
+  </div>
+
+  <div id="error" style="display:none; color:red; margin-top:20px;">
+    Something went wrong!
+    <button id="retryBtn">Retry</button>
+  </div>
+
+  <script>
+    const loading = document.getElementById("loading");
+    const error = document.getElementById("error");
+
+    document.getElementById("playBtn").addEventListener("click", () => {
+      loading.style.display = "block";
+      error.style.display = "none";
+
+      setTimeout(() => {
+        loading.style.display = "none";
+      }, 2000);
+    });
+
+    document.getElementById("retryBtn").addEventListener("click", () => {
+      error.style.display = "none";
+      alert("Retrying...");
+    });
+  </script>
+
 </body>
+
 </html>
