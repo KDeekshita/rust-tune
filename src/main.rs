@@ -62,6 +62,12 @@ async fn search(query: web::Query<SearchQuery>) -> impl Responder {
 
     HttpResponse::Ok().json(results)
 }
+#[get("/api/hello")]
+async fn hello() -> impl Responder {
+    HttpResponse::Ok()
+        .content_type("application/json")
+        .body(r#"{"message":"Hello from RustTune!","status":"ok"}"#)
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -71,6 +77,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .service(home)
             .service(search)
+            .service(hello)
             .service(Files::new("/static", "./static"))
     })
     .bind(("127.0.0.1", 8000))?
