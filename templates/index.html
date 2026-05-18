@@ -1,25 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RustTune</title>
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css" />
 </head>
 <body>
-  <h1>🎧 RustTune</h1>
-  <p>Music app using Rust</p>
+  <header class="site-header">
+    <div class="logo">🎧 RustTune</div>
+    <nav class="nav">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#" class="nav-link">Browse</a>
+      <a href="#" class="nav-link">Library</a>
+      <a href="#" class="nav-link">About</a>
+    </nav>
+    <div class="header-actions">
+      <input type="search" class="search" placeholder="Search songs, artists..." aria-label="Search songs and artists" />
+      <button type="button" class="btn btn-ghost">Sign in</button>
+    </div>
+  </header>
 
-  <button id="playBtn">Play</button>
+  <main class="container">
+    <section class="play-section">
+      <div class="now-playing">
+        <div class="cover-art" aria-hidden="true">🎵</div>
+        <div class="track-info">
+          <p class="eyebrow">Now Playing</p>
+          <h1 class="track-title">Pick a song to start</h1>
+          <p class="track-artist">RustTune &middot; Built with Actix Web</p>
 
-  <div id="loading" class="hidden">
-  <div class="spinner"></div>
-     <p>Loading...</p>
-  </div>
+          <div class="player-controls">
+            <button type="button" class="ctrl" aria-label="Previous">⏮</button>
+            <button type="button" class="ctrl ctrl-play" aria-label="Play">▶</button>
+            <button type="button" class="ctrl" aria-label="Next">⏭</button>
+          </div>
 
-  <div id="error" class="hidden">
-    <p>Something went wrong!</p>
-    <button id="retryBtn">Retry</button>
-  </div>
+          <div class="progress">
+            <span class="time">0:00</span>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="time">3:42</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script src="/static/js/script.js"></script>
+    <section class="songs-section">
+      <div class="section-head">
+        <h2>Songs</h2>
+        <a href="#" class="see-all">See all</a>
+      </div>
+
+      <ul class="song-list">
+        <li class="song-card">
+          <div class="song-cover">🎶</div>
+          <div class="song-meta">
+            <p class="song-title">Song Title 1</p>
+            <p class="song-artist">Artist Name</p>
+          </div>
+          <span class="song-duration">3:24</span>
+        </li>
+        <li class="song-card">
+          <div class="song-cover">🎶</div>
+          <div class="song-meta">
+            <p class="song-title">Song Title 2</p>
+            <p class="song-artist">Artist Name</p>
+          </div>
+          <span class="song-duration">4:05</span>
+        </li>
+        <li class="song-card">
+          <div class="song-cover">🎶</div>
+          <div class="song-meta">
+            <p class="song-title">Song Title 3</p>
+            <p class="song-artist">Artist Name</p>
+          </div>
+          <span class="song-duration">2:58</span>
+        </li>
+        <li class="song-card">
+          <div class="song-cover">🎶</div>
+          <div class="song-meta">
+            <p class="song-title">Song Title 4</p>
+            <p class="song-artist">Artist Name</p>
+          </div>
+          <span class="song-duration">3:47</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 RustTune &middot; Made with Rust 🦀</p>
+  </footer>
+
+  <script src="/static/js/script.js" defer></script>
 </body>
 </html>
