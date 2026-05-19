@@ -6,12 +6,27 @@ RustTune is an open-source music streaming application built using **Rust**, foc
 
 ## 🚀 Features
 
-- 🎵 Music playback system (play / pause / seek / next / prev)
+### Available today
+- ⚡ High-performance backend using Rust + [Actix Web](https://actix.rs/) 4
+- 🏠 Responsive homepage UI (header, now-playing section, song list placeholders)
+- 📦 Static asset serving via `actix-files` (`/static/*`)
+- 🩺 JSON health endpoint at `/api/hello`
+
+### Planned / in progress
+- 🎵 Interactive music player (play / pause / seek / next / prev) — see open PRs
+- 🎶 Songs API (`/api/songs`) — see open PRs
 - 📂 Playlist creation and management
 - 🔍 Search functionality
-- ⚡ High-performance backend using Rust + Actix Web
-- 📱 Responsive and user-friendly UI
-- 🔐 Secure and efficient architecture
+
+---
+
+## 🌐 API Endpoints
+
+| Method | Path          | Description                                  |
+| ------ | ------------- | -------------------------------------------- |
+| GET    | `/`           | Serves the homepage (`templates/index.html`) |
+| GET    | `/api/hello`  | JSON health check                            |
+| GET    | `/static/*`   | Static CSS / JS / asset files                |
 
 ---
 
