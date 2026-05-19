@@ -1,5 +1,5 @@
 use actix_files::Files;
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 
 #[get("/")]
 async fn home() -> impl Responder {
@@ -24,8 +24,14 @@ async fn main() -> std::io::Result<()> {
             .service(home)
             .service(hello)
             .service(Files::new("/static", "./static"))
+            .default_service(web::route().to(not_found))
     })
     .bind(("127.0.0.1", 8000))?
     .run()
     .await
+}
+async fn not_found() -> impl Responder {
+    HttpResponse::NotFound()
+        .content_type("text/html")
+        .body(include_str!("../templates/404.html"))
 }
