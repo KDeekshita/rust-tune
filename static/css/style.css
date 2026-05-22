@@ -233,6 +233,33 @@ body {
 .song-artist { color: var(--text-dim); font-size: 0.85rem; }
 .song-duration { color: var(--text-dim); font-size: 0.85rem; }
 
+/*  Recently Played Section */
+
+.recent-section{
+  margin-top:3rem;
+}
+.recent-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
+}
+.recent-card{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:0.85rem 1rem;
+  background: var(--bg-elev);
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition: 0.2s ease;
+}
+
+.recent-card:hover{
+  background: var(--bg-elev-2);
+  transform: translateY(-1px);
+}
+
 /* Footer */
 .site-footer {
   text-align: center;
