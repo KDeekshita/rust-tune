@@ -1,11 +1,103 @@
 use actix_files::Files;
 use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use serde::Serialize;
+
+#[derive(Serialize)]
+struct Song {
+    id: u32,
+    title: &'static str,
+    artist: &'static str,
+    duration: &'static str,
+    url: &'static str,
+}
+
+// NOTE: Static/mock song catalog. Replace with a real data source
+// (database, external API, etc.) when persistence is introduced.
+pub(crate) fn songs() -> Vec<Song> {
+    vec![
+        Song {
+            id: 1,
+            title: "SoundHelix Song 1",
+            artist: "SoundHelix",
+            duration: "6:13",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        },
+        Song {
+            id: 2,
+            title: "SoundHelix Song 2",
+            artist: "SoundHelix",
+            duration: "6:08",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        },
+        Song {
+            id: 3,
+            title: "SoundHelix Song 3",
+            artist: "SoundHelix",
+            duration: "6:18",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        },
+        Song {
+            id: 4,
+            title: "SoundHelix Song 4",
+            artist: "SoundHelix",
+            duration: "4:54",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        },
+        Song {
+            id: 5,
+            title: "SoundHelix Song 5",
+            artist: "SoundHelix",
+            duration: "6:42",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        },
+        Song {
+            id: 6,
+            title: "SoundHelix Song 6",
+            artist: "SoundHelix",
+            duration: "6:25",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+        },
+        Song {
+            id: 7,
+            title: "SoundHelix Song 7",
+            artist: "SoundHelix",
+            duration: "5:59",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+        },
+        Song {
+            id: 8,
+            title: "SoundHelix Song 8",
+            artist: "SoundHelix",
+            duration: "5:13",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+        },
+        Song {
+            id: 9,
+            title: "SoundHelix Song 9",
+            artist: "SoundHelix",
+            duration: "4:30",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+        },
+        Song {
+            id: 10,
+            title: "SoundHelix Song 10",
+            artist: "SoundHelix",
+            duration: "6:01",
+            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+        },
+    ]
+}
 
 #[get("/")]
 async fn home() -> impl Responder {
     HttpResponse::Ok()
         .content_type("text/html")
         .body(include_str!("../templates/index.html"))
+}
+
+#[get("/api/songs")]
+async fn list_songs() -> impl Responder {
+    HttpResponse::Ok().json(songs())
 }
 
 #[get("/api/hello")]
@@ -22,6 +114,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .service(home)
+            .service(list_songs)
             .service(hello)
             .service(Files::new("/static", "./static"))
     })
