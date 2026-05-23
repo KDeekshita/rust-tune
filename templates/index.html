@@ -80,52 +80,99 @@
 
     </section>
 
-    <section class="songs-section">
+   
 
-      <div class="section-head">
-        <h2>Popular Songs</h2>
-        <a href="#" class="see-all">See all</a>
+<section class="songs-section" style="margin-top: 2.5rem;">
+
+  <div class="section-head">
+    <h2>Popular Songs</h2>
+    <a href="#" class="see-all">See all</a>
+  </div>
+
+  <ul class="song-grid" role="list" aria-label="Popular songs">
+
+    <!-- Card 1 Midnight Echo -->
+    <li class="song-card-grid song-card-grid--playing" data-id="1">
+      <div class="song-card-grid__art song-card-grid__art--orange">
+        🎵
+        <div class="song-card-grid__overlay" aria-hidden="true">
+          <button class="song-card-grid__play-btn" aria-label="Play Midnight Echo">▶</button>
+        </div>
       </div>
+      <div class="song-card-grid__info">
+        <p class="song-card-grid__title">Midnight Echo</p>
+        <p class="song-card-grid__genre">Electronic Vibes</p>
+        <div class="song-card-grid__footer">
+          <span class="song-card-grid__duration">3:24</span>
+          <button class="song-card-grid__like song-card-grid__like--liked"
+                  aria-label="Unlike Midnight Echo" aria-pressed="true">♥</button>
+        </div>
+      </div>
+    </li>
 
-      <ul class="song-list">
+    <!-- Card 2  Neon Waves -->
+    <li class="song-card-grid" data-id="2">
+      <div class="song-card-grid__art song-card-grid__art--purple">
+        🎧
+        <div class="song-card-grid__overlay" aria-hidden="true">
+          <button class="song-card-grid__play-btn" aria-label="Play Neon Waves">▶</button>
+        </div>
+      </div>
+      <div class="song-card-grid__info">
+        <p class="song-card-grid__title">Neon Waves</p>
+        <p class="song-card-grid__genre">Synth Pop</p>
+        <div class="song-card-grid__footer">
+          <span class="song-card-grid__duration">4:05</span>
+          <button class="song-card-grid__like" aria-label="Like Neon Waves"
+                  aria-pressed="false">♡</button>
+        </div>
+      </div>
+    </li>
 
-        <li class="song-card">
-          <div class="song-cover">🎶</div>
+    <!-- Card 3  Dream Runner -->
+    <li class="song-card-grid" data-id="3">
+      <div class="song-card-grid__art song-card-grid__art--teal">
+        🎤
+        <div class="song-card-grid__overlay" aria-hidden="true">
+          <button class="song-card-grid__play-btn" aria-label="Play Dream Runner">▶</button>
+        </div>
+      </div>
+      <div class="song-card-grid__info">
+        <p class="song-card-grid__title">Dream Runner</p>
+        <p class="song-card-grid__genre">Lo-Fi Beats</p>
+        <div class="song-card-grid__footer">
+          <span class="song-card-grid__duration">2:58</span>
+          <button class="song-card-grid__like" aria-label="Like Dream Runner"
+                  aria-pressed="false">♡</button>
+        </div>
+      </div>
+    </li>
 
-          <div class="song-meta">
-            <p class="song-title">Midnight Echo</p>
-            <p class="song-artist">Electronic Vibes</p>
-          </div>
+    <!-- Card 4  Solar Drift -->
+    <li class="song-card-grid" data-id="4">
+      <div class="song-card-grid__art song-card-grid__art--pink">
+        🎼
+        <div class="song-card-grid__overlay" aria-hidden="true">
+          <button class="song-card-grid__play-btn" aria-label="Play Solar Drift">▶</button>
+        </div>
+      </div>
+      <div class="song-card-grid__info">
+        <p class="song-card-grid__title">Solar Drift</p>
+        <p class="song-card-grid__genre">Ambient</p>
+        <div class="song-card-grid__footer">
+          <span class="song-card-grid__duration">5:10</span>
+          <button class="song-card-grid__like" aria-label="Like Solar Drift"
+                  aria-pressed="false">♡</button>
+        </div>
+      </div>
+    </li>
 
-          <span class="song-duration">3:24</span>
-        </li>
+  </ul>
 
-        <li class="song-card">
-          <div class="song-cover">🎧</div>
+</section>
 
-          <div class="song-meta">
-            <p class="song-title">Neon Waves</p>
-            <p class="song-artist">Synth Pop</p>
-          </div>
 
-          <span class="song-duration">4:05</span>
-        </li>
-
-        <li class="song-card">
-          <div class="song-cover">🎤</div>
-
-          <div class="song-meta">
-            <p class="song-title">Dream Runner</p>
-            <p class="song-artist">Lo-Fi Beats</p>
-          </div>
-
-          <span class="song-duration">2:58</span>
-        </li>
-
-      </ul>
-
-    </section>
-
+<script src="script.js"></script>
   </main>
 
   <footer class="site-footer">
