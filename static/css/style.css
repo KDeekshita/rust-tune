@@ -319,9 +319,165 @@ body {
     margin-top: 0.5rem;
   }
 
-  .volume-wrapper .slider-panel {
-    max-width: 160px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
 }
+
+
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+
+.song-card-grid {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.song-card-grid:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+
+.song-card-grid__art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #3a2a4e, #2a1a3a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  overflow: hidden;
+}
+
+
+.song-card-grid__art--orange  { background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.song-card-grid__art--purple  { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
+.song-card-grid__art--teal    { background: linear-gradient(135deg, #0d9488, #0891b2); }
+.song-card-grid__art--pink    { background: linear-gradient(135deg, #ec4899, #a855f7); }
+
+
+.song-card-grid__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.song-card-grid__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.song-card-grid:hover .song-card-grid__overlay {
+  opacity: 1;
+}
+
+.song-card-grid__play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, background 0.15s;
+  box-shadow: 0 4px 20px rgba(255, 107, 61, 0.45);
+}
+
+.song-card-grid__play-btn:hover {
+  transform: scale(1.08);
+  background: var(--accent-2);
+}
+
+
+.song-card-grid--playing .song-card-grid__art::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid var(--accent);
+  animation: pulse-ring 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0%   { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0;   transform: scale(1.06); }
+}
+
+
+.song-card-grid__info {
+  padding: 0.75rem 0.875rem 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.song-card-grid__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-card-grid__genre {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.song-card-grid__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.song-card-grid__duration {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.song-card-grid__like {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.song-card-grid__like:hover,
+.song-card-grid__like--liked {
+  color: var(--accent) ;
+  transform: scale(1.15);
+}
+
