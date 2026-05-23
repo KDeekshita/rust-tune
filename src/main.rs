@@ -1,7 +1,7 @@
 use actix_files::Files;
-use actix_web::{get, post, delete, App, HttpResponse, HttpServer, Responder};
+use actix_web::{delete, get, post, App, HttpResponse, HttpServer, Responder};
+use serde::{Deserialize, Serialize};
 use std::sync::{Arc, Mutex};
-use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Clone)]
 struct Song {
@@ -34,8 +34,8 @@ struct ApiResponse<T: Serialize> {
 #[get("/")]
 async fn home() -> impl Responder {
     HttpResponse::Ok()
-    .content_type("text/html")
-    .body(include_str!("../templates/index.html"))
+        .content_type("text/html")
+        .body(include_str!("../templates/index.html"))
 }
 
 #[get("/api/hello")]
@@ -143,7 +143,7 @@ async fn main() -> std::io::Result<()> {
     println!("Server running at http://127.0.0.1:8000");
 
     let data = Arc::new(AppState {
-        songs: Mutex::new(Vec::new())
+        songs: Mutex::new(Vec::new()),
     });
 
     HttpServer::new(move || {
@@ -175,9 +175,12 @@ mod tests {
     }
 
     #[actix_web::test]
-async fn test_hello_returns_consistent_format() {
+    async fn test_hello_returns_consistent_format() {
         let app = test::init_service(App::new().service(hello)).await;
-        let req = test::TestRequest::get().uri("/api/hello").send_request(&app).await;
+        let req = test::TestRequest::get()
+            .uri("/api/hello")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
@@ -196,19 +199,28 @@ async fn test_hello_returns_consistent_format() {
     #[actix_web::test]
     async fn test_unknown_route_returns_404() {
         let app = test::init_service(App::new().service(home)).await;
-        let req = test::TestRequest::get().uri("/nonexistent").send_request(&app).await;
+        let req = test::TestRequest::get()
+            .uri("/nonexistent")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_client_error());
     }
 
     #[actix_web::test]
     async fn test_get_songs_empty() {
-        let data = Arc::new(AppState { songs: Mutex::new(Vec::new()) });
+        let data = Arc::new(AppState {
+            songs: Mutex::new(Vec::new()),
+        });
         let app = test::init_service(
             App::new()
                 .app_data(actix_web::web::Data::new(data))
-                .service(get_songs)
-        ).await;
-        let req = test::TestRequest::get().uri("/api/songs").send_request(&app).await;
+                .service(get_songs),
+        )
+        .await;
+        let req = test::TestRequest::get()
+            .uri("/api/songs")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
@@ -216,12 +228,15 @@ async fn test_hello_returns_consistent_format() {
 
     #[actix_web::test]
     async fn test_create_song() {
-        let data = Arc::new(AppState { songs: Mutex::new(Vec::new()) });
+        let data = Arc::new(AppState {
+            songs: Mutex::new(Vec::new()),
+        });
         let app = test::init_service(
             App::new()
                 .app_data(actix_web::web::Data::new(data))
-                .service(create_song)
-        ).await;
+                .service(create_song),
+        )
+        .await;
         let req = test::TestRequest::post()
             .uri("/api/songs")
             .set_json(serde_json::json!({
@@ -230,7 +245,8 @@ async fn test_hello_returns_consistent_format() {
                 "duration": "3:20",
                 "url": "songs/blinding-lights.mp3"
             }))
-            .send_request(&app).await;
+            .send_request(&app)
+            .await;
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
@@ -239,25 +255,34 @@ async fn test_hello_returns_consistent_format() {
 
     #[actix_web::test]
     async fn test_get_song_not_found() {
-        let data = Arc::new(AppState { songs: Mutex::new(Vec::new()) });
+        let data = Arc::new(AppState {
+            songs: Mutex::new(Vec::new()),
+        });
         let app = test::init_service(
             App::new()
                 .app_data(actix_web::web::Data::new(data))
-                .service(get_song)
-        ).await;
-        let req = test::TestRequest::get().uri("/api/songs/999").send_request(&app).await;
+                .service(get_song),
+        )
+        .await;
+        let req = test::TestRequest::get()
+            .uri("/api/songs/999")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_client_error());
     }
 
     #[actix_web::test]
     async fn test_delete_song() {
-        let data = Arc::new(AppState { songs: Mutex::new(Vec::new()) });
+        let data = Arc::new(AppState {
+            songs: Mutex::new(Vec::new()),
+        });
         let app = test::init_service(
             App::new()
                 .app_data(actix_web::web::Data::new(data))
                 .service(create_song)
-                .service(delete_song)
-        ).await;
+                .service(delete_song),
+        )
+        .await;
         test::TestRequest::post()
             .uri("/api/songs")
             .set_json(serde_json::json!({
@@ -266,10 +291,14 @@ async fn test_hello_returns_consistent_format() {
                 "duration": "3:20",
                 "url": "songs/blinding-lights.mp3"
             }))
-            .send_request(&app).await;
-        let req = test::TestRequest::delete().uri("/api/songs/1").send_request(&app).await;
+            .send_request(&app)
+            .await;
+        let req = test::TestRequest::delete()
+            .uri("/api/songs/1")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
     }
-}    
+}
