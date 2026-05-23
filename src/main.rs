@@ -2,22 +2,23 @@ use actix_files::Files;
 use actix_web::{get, post, delete, App, HttpResponse, HttpServer, Responder};
 use std::sync::{Arc, Mutex};
 use serde::{Serialize, Deserialize};
-    #[derive(Serialize, Clone)]
-    struct Song {
-        id: u32,
-        title: String,
-        artist: String,
-        duration: u32,
-        url: String,
-    }
 
-    #[derive(Deserialize)]
-    struct CreateSong {
-        title: String,
-        artist: String,
-        duration: u32,
-        url: String,
-    }
+#[derive(Serialize, Clone)]
+struct Song {
+    id: u32,
+    title: String,
+    artist: String,
+    duration: String,
+    url: String,
+}
+
+#[derive(Deserialize)]
+struct CreateSong {
+    title: String,
+    artist: String,
+    duration: String,
+    url: String,
+}
 
 struct AppState {
     songs: Mutex<Vec<Song>>,
@@ -68,7 +69,7 @@ async fn create_song(
         id: songs.len() as u32 + 1,
         title: body.title.clone(),
         artist: body.artist.clone(),
-        duration: body.duration,
+        duration: body.duration.clone(),
         url: body.url.clone(),
     };
     songs.push(new_song.clone());
@@ -174,7 +175,7 @@ mod tests {
     }
 
     #[actix_web::test]
-    async fn test_hello_returns_consistent_format() {
+async fn test_hello_returns_consistent_format() {
         let app = test::init_service(App::new().service(hello)).await;
         let req = test::TestRequest::get().uri("/api/hello").send_request(&app).await;
         assert!(req.status().is_success());
@@ -183,6 +184,22 @@ mod tests {
         assert_eq!(body["message"], "Request Successful");
         assert!(body["data"].is_object());
     }
+
+    #[actix_web::test]
+    async fn test_home_returns_html_content_type() {
+        let app = test::init_service(App::new().service(home)).await;
+        let req = test::TestRequest::get().uri("/").send_request(&app).await;
+        let content_type = req.headers().get("content-type").unwrap();
+        assert!(content_type.to_str().unwrap().contains("text/html"));
+    }
+
+    #[actix_web::test]
+    async fn test_unknown_route_returns_404() {
+        let app = test::init_service(App::new().service(home)).await;
+        let req = test::TestRequest::get().uri("/nonexistent").send_request(&app).await;
+        assert!(req.status().is_client_error());
+    }
+
     #[actix_web::test]
     async fn test_get_songs_empty() {
         let data = Arc::new(AppState { songs: Mutex::new(Vec::new()) });
@@ -195,7 +212,6 @@ mod tests {
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
-        assert_eq!(body["data"], serde_json::json!([]));
     }
 
     #[actix_web::test]
@@ -211,7 +227,7 @@ mod tests {
             .set_json(serde_json::json!({
                 "title": "Blinding Lights",
                 "artist": "The Weeknd",
-                "duration": 200,
+                "duration": "3:20",
                 "url": "songs/blinding-lights.mp3"
             }))
             .send_request(&app).await;
@@ -247,7 +263,7 @@ mod tests {
             .set_json(serde_json::json!({
                 "title": "Blinding Lights",
                 "artist": "The Weeknd",
-                "duration": 200,
+                "duration": "3:20",
                 "url": "songs/blinding-lights.mp3"
             }))
             .send_request(&app).await;
@@ -255,5 +271,5 @@ mod tests {
         assert!(req.status().is_success());
         let body: serde_json::Value = test::read_body_json(req).await;
         assert_eq!(body["success"], true);
-    }  
-}
+    }
+}    

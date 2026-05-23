@@ -53,6 +53,13 @@
             <button class="ctrl">⏮</button>
             <button class="ctrl ctrl-play">▶</button>
             <button class="ctrl">⏭</button>
+
+            <div class="volume-wrapper">
+              <button class="ctrl ctrl-volume" id="mute-btn">🔊</button>
+              <div class="slider-panel">
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
+              </div>
+              </div>
           </div>
 
           <div class="progress">
@@ -125,5 +132,7 @@
     <p>© 2026 RustTune • Made with Rust 🦀</p>
   </footer>
 
+  <script src="/static/js/script.js"></script>
+  
 </body>
 </html>
