@@ -146,7 +146,10 @@ mod tests {
     #[actix_web::test]
     async fn test_unknown_route_returns_404() {
         let app = test::init_service(App::new().service(home)).await;
-        let req = test::TestRequest::get().uri("/nonexistent").send_request(&app).await;
+        let req = test::TestRequest::get()
+            .uri("/nonexistent")
+            .send_request(&app)
+            .await;
         assert!(req.status().is_client_error());
     }
 }

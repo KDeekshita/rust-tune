@@ -1,7 +1,6 @@
 console.log("RustTune loaded");
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("RustTune volume controller initialized");
 
+document.addEventListener("DOMContentLoaded", () => {
   const muteBtn = document.getElementById("mute-btn");
   const volumeSlider = document.getElementById("volume-slider");
 
@@ -19,16 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   volumeSlider.addEventListener("input", (e) => {
     const val = parseFloat(e.target.value);
-    
+
     if (val > 0) {
       savedVolume = val;
     }
-    
+
     updateIcon(val);
   });
 
   muteBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
 
     const currentVal = parseFloat(volumeSlider.value);
 
@@ -41,4 +40,50 @@ document.addEventListener("DOMContentLoaded", () => {
       updateIcon(savedVolume);
     }
   });
+
+  // Recently played songs
+  const songCards = document.querySelectorAll(".song-card");
+
+  const recentList = document.getElementById("recent-list");
+
+  let recentlyPlayed = JSON.parse(localStorage.getItem("recentSongs")) || [];
+
+  function renderRecentSongs() {
+    recentList.innerHTML = "";
+
+    recentlyPlayed.forEach((song) => {
+      const songItem = document.createElement("li");
+
+      songItem.classList.add("recent-card");
+
+      songItem.innerHTML = `
+        <div class="song-cover">🎵</div>
+
+        <div class="song-meta">
+          <p class="song-title">${song}</p>
+          <p class="song-artist">Recently Played</p>
+        </div>
+      `;
+
+      recentList.appendChild(songItem);
+    });
+  }
+
+  songCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const songName = card.dataset.song;
+
+      recentlyPlayed = recentlyPlayed.filter((song) => song !== songName);
+
+      recentlyPlayed.unshift(songName);
+
+      recentlyPlayed = recentlyPlayed.slice(0, 10);
+
+      localStorage.setItem("recentSongs", JSON.stringify(recentlyPlayed));
+
+      renderRecentSongs();
+    });
+  });
+
+  renderRecentSongs();
 });
