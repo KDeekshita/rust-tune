@@ -1,4 +1,3 @@
-
 :root {
   --bg: #0d0d12;
   --bg-elev: #16161f;
@@ -10,7 +9,11 @@
   --border: #2a2a38;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -23,6 +26,7 @@ body {
 }
 
 /* Header */
+
 .site-header {
   display: flex;
   align-items: center;
@@ -43,16 +47,28 @@ body {
   background-clip: text;
 }
 
-.nav { display: flex; gap: 1.25rem; }
+.nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
 .nav-link {
   color: var(--text-dim);
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.15s;
 }
-.nav-link:hover, .nav-link.active { color: var(--text); }
 
-.header-actions { display: flex; gap: 0.75rem; align-items: center; }
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text);
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
 
 .search {
   background: var(--bg-elev-2);
@@ -64,7 +80,10 @@ body {
   font-size: 0.9rem;
   outline: none;
 }
-.search:focus { border-color: var(--accent); }
+
+.search:focus {
+  border-color: var(--accent);
+}
 
 .btn {
   background: var(--accent);
@@ -76,7 +95,11 @@ body {
   cursor: pointer;
   transition: opacity 0.15s;
 }
-.btn:hover { opacity: 0.9; }
+
+.btn:hover {
+  opacity: 0.9;
+}
+
 .btn-ghost {
   background: transparent;
   border: 1px solid var(--border);
@@ -84,6 +107,7 @@ body {
 }
 
 /* Main */
+
 .container {
   flex: 1;
   width: 100%;
@@ -93,6 +117,7 @@ body {
 }
 
 /* Play section */
+
 .play-section {
   background: linear-gradient(135deg, #2a1a2e 0%, #1a1a2a 100%);
   border-radius: 16px;
@@ -121,7 +146,11 @@ body {
   box-shadow: 0 10px 30px rgba(255, 107, 61, 0.3);
 }
 
-.track-info { flex: 1; min-width: 240px; }
+.track-info {
+  flex: 1;
+  min-width: 240px;
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -129,8 +158,16 @@ body {
   color: var(--text-dim);
   margin-bottom: 0.5rem;
 }
-.track-title { font-size: 1.75rem; margin-bottom: 0.25rem; }
-.track-artist { color: var(--text-dim); margin-bottom: 1.25rem; }
+
+.track-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.track-artist {
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
 
 .player-controls {
   display: flex;
@@ -153,7 +190,11 @@ body {
   justify-content: center;
   transition: background 0.15s;
 }
-.ctrl:hover { background: var(--border); }
+
+.ctrl:hover {
+  background: var(--border);
+}
+
 .ctrl-play {
   width: 54px;
   height: 54px;
@@ -161,7 +202,11 @@ body {
   border-color: var(--accent);
   font-size: 1.2rem;
 }
-.ctrl-play:hover { background: var(--accent-2); border-color: var(--accent-2); }
+
+.ctrl-play:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+}
 
 .progress {
   display: flex;
@@ -170,6 +215,7 @@ body {
   font-size: 0.8rem;
   color: var(--text-dim);
 }
+
 .progress-bar {
   flex: 1;
   height: 4px;
@@ -177,6 +223,7 @@ body {
   border-radius: 2px;
   overflow: hidden;
 }
+
 .progress-fill {
   width: 25%;
   height: 100%;
@@ -184,21 +231,34 @@ body {
 }
 
 /* Songs */
+
 .section-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 1rem;
 }
-.section-head h2 { font-size: 1.35rem; }
+
+.section-head h2 {
+  font-size: 1.35rem;
+}
+
 .see-all {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
 }
-.see-all:hover { text-decoration: underline; }
 
-.song-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.see-all:hover {
+  text-decoration: underline;
+}
+
+.song-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
 .song-card {
   display: flex;
@@ -211,6 +271,7 @@ body {
   cursor: pointer;
   transition: background 0.15s, transform 0.15s;
 }
+
 .song-card:hover {
   background: var(--bg-elev-2);
   transform: translateY(-1px);
@@ -228,12 +289,28 @@ body {
   flex-shrink: 0;
 }
 
-.song-meta { flex: 1; min-width: 0; }
-.song-title { font-weight: 600; font-size: 0.95rem; }
-.song-artist { color: var(--text-dim); font-size: 0.85rem; }
-.song-duration { color: var(--text-dim); font-size: 0.85rem; }
+.song-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.song-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.song-artist {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.song-duration {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
 
 /* Footer */
+
 .site-footer {
   text-align: center;
   padding: 1.5rem;
@@ -243,6 +320,7 @@ body {
 }
 
 /* Volume Controls */
+
 .volume-wrapper {
   display: inline-flex;
   align-items: center;
@@ -267,9 +345,9 @@ body {
   background: var(--bg-elev-2);
   border: 1px solid var(--border);
   height: 42px;
-  border-radius: 21px;  
+  border-radius: 21px;
   padding: 0;
-  margin-left: -42px;   
+  margin-left: -42px;
   max-width: 0px;
   opacity: 0;
   visibility: hidden;
@@ -286,8 +364,8 @@ body {
   background: var(--border);
   outline: none;
   cursor: pointer;
-  margin-left: 50px; 
-  margin-right: 15px; 
+  margin-left: 50px;
+  margin-right: 15px;
 }
 
 #volume-slider::-webkit-slider-thumb {
@@ -305,15 +383,57 @@ body {
   visibility: visible;
 }
 
+/* mobile volume slider support */
+
+.slider-panel.show-slider {
+  max-width: 160px;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (hover: none) {
+  .slider-panel {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .slider-panel.show-slider {
+    max-width: 160px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 /* Responsive */
+
 @media (max-width: 640px) {
-  .site-header { padding: 1rem; }
-  .search { width: 100%; }
-  .container { padding: 1rem; }
-  .play-section { padding: 1.25rem; }
-  .cover-art { width: 140px; height: 140px; font-size: 3rem; }
-  .track-title { font-size: 1.4rem; }
-  
+  .site-header {
+    padding: 1rem;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .play-section {
+    padding: 1.25rem;
+  }
+
+  .cover-art {
+    width: 140px;
+    height: 140px;
+    font-size: 3rem;
+  }
+
+  .track-title {
+    font-size: 1.4rem;
+  }
+
   .volume-wrapper {
     margin-left: 0;
     margin-top: 0.5rem;
