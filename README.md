@@ -164,6 +164,32 @@ Open a [GitHub Issue](https://github.com/KDeekshita/rust-tune/issues) with:
 
 ---
 
+## 💖 Contributors
+
+Thanks to all the amazing people who contribute to **rust-tune** 🚀
+
+<p align="center">
+  <a href="https://github.com/KDeekshita/rust-tune/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=KDeekshita/rust-tune" alt="Contributors"/>
+  </a>
+</p>
+
+<br>
+
+## ⭐ Project Support
+
+<p align="center">
+  <a href="https://github.com/KDeekshita/rust-tune/stargazers">
+    <img src="https://img.shields.io/github/stars/KDeekshita/rust-tune?style=social" alt="Stars">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/KDeekshita/rust-tune/network/members">
+    <img src="https://img.shields.io/github/forks/KDeekshita/rust-tune?style=social" alt="Forks">
+  </a>
+</p>
+
+---
+
 ## 🎯 Goal of the Project
 
 RustTune is designed to:
