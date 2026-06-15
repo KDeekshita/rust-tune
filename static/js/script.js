@@ -42,3 +42,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Audio Player
+const audio   = document.getElementById('player');
+const playBtn = document.getElementById('btn-play');
+const prevBtn = document.getElementById('btn-prev');
+const nextBtn = document.getElementById('btn-next');
+
+let songs      = [];
+let currentIdx = 0;
+
+async function loadSongs() {
+  const res = await fetch('/api/songs');
+  songs     = await res.json();
+  if (songs.length > 0) setSong(0);
+}
+
+function setSong(idx) {
+  currentIdx = idx;
+  audio.src  = songs[idx].url;
+  audio.load();
+}
+
+playBtn.addEventListener('click', () => {
+  audio.paused ? audio.play() : audio.pause();
+});
+
+audio.addEventListener('play',  () => { playBtn.textContent = '⏸'; });
+audio.addEventListener('pause', () => { playBtn.textContent = '▶'; });
+
+prevBtn.addEventListener('click', () => {
+  setSong((currentIdx - 1 + songs.length) % songs.length);
+  audio.play();
+});
+
+nextBtn.addEventListener('click', () => goNext());
+audio.addEventListener('ended',   () => goNext());
+
+function goNext() {
+  setSong((currentIdx + 1) % songs.length);
+  audio.play();
+}
+
+loadSongs();
