@@ -50,9 +50,9 @@
           </p>
 
           <div class="player-controls">
-            <button class="ctrl">⏮</button>
-            <button class="ctrl ctrl-play">▶</button>
-            <button class="ctrl">⏭</button>
+            <button class="ctrl" id="btn-prev">⏮</button>
+            <button class="ctrl ctrl-play" id="btn-play">▶</button>
+            <button class="ctrl" id="btn-next">⏭</button>
 
             <div class="volume-wrapper">
               <button class="ctrl ctrl-volume" id="mute-btn">🔊</button>
@@ -133,6 +133,8 @@
   </footer>
 
   <script src="/static/js/script.js"></script>
+
+  <audio id="player" preload="auto"></audio>
   
 </body>
 </html>
