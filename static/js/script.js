@@ -1,5 +1,34 @@
 console.log("RustTune loaded");
+
+// Theme toggle functionality
+const initTheme = () => {
+  const themeToggle = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  
+  // Check for saved theme preference or default to dark mode
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  
+  // Apply saved theme on load
+  if (savedTheme === "light") {
+    html.classList.add("light-mode");
+    themeToggle.textContent = "☀️";
+  } else {
+    html.classList.remove("light-mode");
+    themeToggle.textContent = "🌙";
+  }
+  
+  // Toggle theme on button click
+  themeToggle.addEventListener("click", () => {
+    const isLightMode = html.classList.toggle("light-mode");
+    const newTheme = isLightMode ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+    themeToggle.textContent = isLightMode ? "☀️" : "🌙";
+    console.log(`Theme switched to ${newTheme} mode`);
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   console.log("RustTune volume controller initialized");
 
   const muteBtn = document.getElementById("mute-btn");
